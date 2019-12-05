@@ -27,9 +27,8 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                    	sh "/bin/ls -latr ${WORKSPACE}/**/target "
-                        sh "/usr/bin/scp -v -i /Users/csanga/jenkins-project/keys-ec2/tomcat.pem ${WORKSPACE}/**/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
-                    }
+                    	sh "/usr/bin/ssh -vvv -i /Users/csanga/jenkins-project/keys-ec2/tomcat.pem ec2-user@${params.tomcat_dev}"
+					}
                 }
 
                 stage ("Deploy to Production"){
