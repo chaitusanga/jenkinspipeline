@@ -28,13 +28,13 @@ pipeline {
                 stage ('Deploy to Staging'){
                     steps {
                     	sh "/bin/ls -latr ${WORKSPACE}/**/target "
-                        sh "/usr/bin/scp -i /Users/csanga/jenkins-project/keys-ec2/tomcat.pem ${WORKSPACE}/**/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
+                        sh "/usr/bin/scp -v -i /Users/csanga/jenkins-project/keys-ec2/tomcat.pem ${WORKSPACE}/**/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "/usr/bin/scp -i /Users/csanga/jenkins-project/keys-ec2/tomcat.pem ${WORKSPACE}/**/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
+                        sh "/usr/bin/scp -v -i /Users/csanga/jenkins-project/keys-ec2/tomcat.pem ${WORKSPACE}/**/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
                     }
                 }
             }
