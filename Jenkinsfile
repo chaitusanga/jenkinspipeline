@@ -33,7 +33,7 @@ pipeline {
 					}
                 }
 
-                stage ("Deploy to Production"){
+                stage ("Deploy to Production") {
                     steps {
                         sh "/usr/bin/scp -i /Users/Shared/Jenkins/tomcat-new.pem ${WORKSPACE}/**/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
                     	sh "echo 'File copied to Production - ${params.tomcat_prod} server'"
