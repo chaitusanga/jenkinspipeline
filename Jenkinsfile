@@ -29,12 +29,14 @@ pipeline {
                     steps {
                     	//sh "/usr/bin/ssh -vvv -i /Users/Shared/Jenkins/tomcat-new.pem ec2-user@${params.tomcat_dev} 'df -H'"
                     	sh "/usr/bin/scp -i /Users/Shared/Jenkins/tomcat-new.pem ${WORKSPACE}/**/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
+                    	sh "echo 'File copied to Staging - ${params.tomcat_dev} server'"
 					}
                 }
 
                 stage ("Deploy to Production"){
                     steps {
                         sh "/usr/bin/scp -i /Users/Shared/Jenkins/tomcat-new.pem ${WORKSPACE}/**/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
+                    	sh "echo 'File copied to Production - ${params.tomcat_prod} server'"
                     }
                 } 
 
