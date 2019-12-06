@@ -27,7 +27,7 @@ pipeline {
             parallel {
                 stage ('Deploy to Staging') {
                     steps {
-                    	sh "/usr/bin/ssh -vvv -i /Users/csanga/jenkins-project/keys-ec2/tomcat-new.pem ec2-user@${params.tomcat_dev} 'df -H'"
+                    	sh "/usr/bin/ssh -vvv -i /Users/Shared/Jenkins/tomcat-new.pem ec2-user@${params.tomcat_dev} 'df -H'"
                     	//sh "/usr/bin/scp -v -i /Users/csanga/jenkins-project/keys-ec2/tomcat.pem ${WORKSPACE}/**/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
 					}
                 }
